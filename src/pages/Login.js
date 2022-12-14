@@ -1,18 +1,40 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import Loading from '../components/Loading';
+import { createUser } from '../services/userAPI';
 
 class Login extends React.Component {
+  state = {
+    userName: '',
+    userNameLength: false,
+    isLoading: false,
+    isLoged: false,
+  };
+
+  validationUser = (e) => {
+    const lengthMin = 3;
+    this.setState({
+      userName: e.target.value,
+      userNameLength: e.target.value.length >= lengthMin,
+    });
+  };
+
+  savingUser = async (userName) => {
+    this.setState({
+      isLoading: true,
+    });
+    await createUser({ name: `${userName}` });
+    this.setState({
+      isLoading: false,
+      isLoged: true,
+    });
+  };
+
   render() {
-    const {
-      validationUser,
-      userNameLength,
-      userName,
-      isLoading,
-      savingUser,
-    } = this.props;
+    const { userNameLength, userName, isLoading, isLoged } = this.state;
     return (
       <div data-testid="page-login">
+        { isLoged && <Redirect to="/search" /> }
         {
           (
             isLoading
@@ -24,13 +46,13 @@ class Login extends React.Component {
                     type="text"
                     name="user-name"
                     data-testid="login-name-input"
-                    onChange={ validationUser }
+                    onChange={ this.validationUser }
                   />
                   <button
                     type="button"
                     data-testid="login-submit-button"
                     disabled={ !userNameLength }
-                    onClick={ () => (savingUser(userName)) }
+                    onClick={ () => this.savingUser(userName) }
                   >
                     Entrar
                   </button>
@@ -42,13 +64,5 @@ class Login extends React.Component {
     );
   }
 }
-
-Login.propTypes = {
-  validationUser: PropTypes.func.isRequired,
-  savingUser: PropTypes.func.isRequired,
-  userNameLength: PropTypes.bool.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  userName: PropTypes.string.isRequired,
-};
 
 export default Login;
