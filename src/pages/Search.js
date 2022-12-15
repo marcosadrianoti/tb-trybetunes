@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
+import AlbunsList from '../components/AlbunsList';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 
 class Search extends React.Component {
@@ -74,6 +75,7 @@ class Search extends React.Component {
                       foundArtist === false && 'Nenhum álbum foi encontrado'
                     }
                   </h3>
+                  <AlbunsList artistArr={ artistArr } />
                 </>
               )
           )
