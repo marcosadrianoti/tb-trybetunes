@@ -75,12 +75,14 @@ class Search extends React.Component {
                       foundArtist === false && 'Nenhum álbum foi encontrado'
                     }
                   </h3>
-                  <AlbunsList artistArr={ artistArr } />
+                  <div>
+                    { artistArr.length !== 0 && <AlbunsList artistArr={ artistArr } /> }
+
+                  </div>
                 </>
               )
           )
         }
-
       </div>
     );
   }

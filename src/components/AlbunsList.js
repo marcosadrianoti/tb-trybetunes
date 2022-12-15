@@ -7,9 +7,7 @@ class AlbunsList extends React.Component {
     const { artistArr } = this.props;
     return (
       artistArr.map((album) => (
-
         <CardAlbum key={ album.collectionId } album={ album } />
-        // <p key={ album.collectionId }>{album.artworkUrl100}</p>
       ))
     );
   }
@@ -21,7 +19,7 @@ AlbunsList.propTypes = {
     artistName: PropTypes.string.isRequired,
     collectionId: PropTypes.number.isRequired,
     collectionName: PropTypes.string.isRequired,
-    collectionPrice: PropTypes.number.isRequired,
+    collectionPrice: PropTypes.number,
     artworkUrl100: PropTypes.string.isRequired,
     releaseDate: PropTypes.string.isRequired,
     trackCount: PropTypes.number.isRequired,
