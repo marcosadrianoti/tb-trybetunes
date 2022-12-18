@@ -12,7 +12,11 @@ class ListCards extends React.Component {
           <h3 data-testid="album-name">{ musics[0].collectionName }</h3>
           { musics.filter((_music, index) => index !== 0).map((track) => (
             <div key={ track.trackId }>
-              <MusicCard trackName={ track.trackName } previewUrl={ track.previewUrl } />
+              <MusicCard
+                trackName={ track.trackName }
+                previewUrl={ track.previewUrl }
+                trackId={ track.trackId }
+              />
             </div>
           ))}
         </section>
