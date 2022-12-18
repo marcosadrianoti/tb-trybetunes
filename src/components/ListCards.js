@@ -35,8 +35,9 @@ ListCards.propTypes = {
   musics: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.object]),
   ).isRequired,
-  favorites: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])).isRequired,
-  // favorites: PropTypes.arrayOf(PropTypes.number).isRequired,
+  favorites: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.object]),
+  ).isRequired,
 };
 
 export default ListCards;
