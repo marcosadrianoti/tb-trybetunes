@@ -3,8 +3,12 @@ import PropTypes from 'prop-types';
 import MusicCard from './MusicCard';
 
 class ListCards extends React.Component {
+  isFavorite = (favorites, trackId) => favorites
+    .map((fav) => fav.trackId)
+    .includes(trackId);
+
   render() {
-    const { musics } = this.props;
+    const { musics, favorites } = this.props;
     return (
       <div>
         <section>
@@ -16,6 +20,8 @@ class ListCards extends React.Component {
                 trackName={ track.trackName }
                 previewUrl={ track.previewUrl }
                 trackId={ track.trackId }
+                favorite={ this.isFavorite(favorites, track.trackId) }
+                track={ track }
               />
             </div>
           ))}
@@ -29,6 +35,8 @@ ListCards.propTypes = {
   musics: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.object]),
   ).isRequired,
+  favorites: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])).isRequired,
+  // favorites: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 
 export default ListCards;
