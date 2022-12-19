@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Loading from './Loading';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, removeSong } from '../services/favoriteSongsAPI';
 
 class MusicCard extends React.Component {
   state = {
     isLoading: false,
     isChecked: false,
+    isFavorite: false,
   };
 
   componentDidMount() {
@@ -14,15 +15,29 @@ class MusicCard extends React.Component {
     if (favorite) {
       this.setState({
         isChecked: favorite,
+        isFavorite: favorite,
       });
     }
   }
 
-  handleOnChange = (isInputChecked, trackId, favorite, track) => {
+  handleOnChange = (isInputChecked, favorite, track, isFavorite) => {
+    if (isFavorite === true) {
+      this.setState({
+        isLoading: true,
+        isChecked: false,
+        isFavorite: false,
+      }, async () => {
+        await removeSong(track);
+        this.setState({
+          isLoading: false,
+        });
+      });
+    }
     if (isInputChecked === true && favorite === false) {
       this.setState({
         isLoading: true,
         isChecked: true,
+        isFavorite: true,
       }, async () => {
         await addSong(track);
         this.setState({
@@ -34,7 +49,7 @@ class MusicCard extends React.Component {
 
   render() {
     const { trackName, previewUrl, trackId, favorite, track } = this.props;
-    const { isLoading, isChecked } = this.state;
+    const { isLoading, isChecked, isFavorite } = this.state;
     return (
       (
         isLoading
@@ -52,9 +67,9 @@ class MusicCard extends React.Component {
                   id="check"
                   onChange={ (e) => this.handleOnChange(
                     e.target.checked,
-                    trackId,
                     favorite,
                     track,
+                    isFavorite,
                   ) }
                   checked={ isChecked }
                 />
