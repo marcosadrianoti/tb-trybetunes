@@ -9,22 +9,30 @@ class ListCards extends React.Component {
 
   render() {
     const { musics, favorites } = this.props;
+    const islistingFavoritesSongs = musics === favorites;
+
     return (
       <div>
         <section>
           <h2 data-testid="artist-name">{ musics[0].artistName }</h2>
           <h3 data-testid="album-name">{ musics[0].collectionName }</h3>
-          { musics.filter((_music, index) => index !== 0).map((track) => (
-            <div key={ track.trackId }>
-              <MusicCard
-                trackName={ track.trackName }
-                previewUrl={ track.previewUrl }
-                trackId={ track.trackId }
-                favorite={ this.isFavorite(favorites, track.trackId) }
-                track={ track }
-              />
-            </div>
-          ))}
+          {
+            musics
+              .filter((_music, index) => (
+                islistingFavoritesSongs === false ? index !== 0 : index >= 0))
+              .map((track) => (
+                <div key={ track.trackId }>
+                  <MusicCard
+                    trackName={ track.trackName }
+                    previewUrl={ track.previewUrl }
+                    trackId={ track.trackId }
+                    favorite={ this.isFavorite(favorites, track.trackId) }
+                    islistingFavoritesSongs={ islistingFavoritesSongs }
+                    track={ track }
+                  />
+                </div>
+              ))
+          }
         </section>
       </div>
     );

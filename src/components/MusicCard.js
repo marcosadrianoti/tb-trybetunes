@@ -8,6 +8,7 @@ class MusicCard extends React.Component {
     isLoading: false,
     isChecked: false,
     isFavorite: false,
+    show: true,
   };
 
   componentDidMount() {
@@ -20,7 +21,7 @@ class MusicCard extends React.Component {
     }
   }
 
-  handleOnChange = (isInputChecked, favorite, track, isFavorite) => {
+  handleOnChange = (track, isFavorite, islistingFavoritesSongs) => {
     if (isFavorite === true) {
       this.setState({
         isLoading: true,
@@ -30,10 +31,11 @@ class MusicCard extends React.Component {
         await removeSong(track);
         this.setState({
           isLoading: false,
+          show: !islistingFavoritesSongs,
         });
       });
     }
-    if (isInputChecked === true && favorite === false) {
+    if (isFavorite === false) {
       this.setState({
         isLoading: true,
         isChecked: true,
@@ -48,34 +50,36 @@ class MusicCard extends React.Component {
   };
 
   render() {
-    const { trackName, previewUrl, trackId, favorite, track } = this.props;
-    const { isLoading, isChecked, isFavorite } = this.state;
+    const { trackName, previewUrl, trackId, track, islistingFavoritesSongs } = this.props;
+    const { isLoading, isChecked, isFavorite, show } = this.state;
     return (
       (
         isLoading
           ? <Loading />
           : (
-            <>
-              <h4>{ trackName }</h4>
-              <audio data-testid="audio-component" src={ previewUrl } controls>
-                <track kind="captions" />
-              </audio>
-              <label htmlFor="check">
-                <input
-                  type="checkbox"
-                  data-testid={ `checkbox-music-${trackId}` }
-                  id="check"
-                  onChange={ (e) => this.handleOnChange(
-                    e.target.checked,
-                    favorite,
-                    track,
-                    isFavorite,
-                  ) }
-                  checked={ isChecked }
-                />
-                Favorita
-              </label>
-            </>
+            show && (
+              <div>
+                <h4>{ trackName }</h4>
+                <audio data-testid="audio-component" src={ previewUrl } controls>
+                  <track kind="captions" />
+                </audio>
+                <label htmlFor="check">
+                  <input
+                    type="checkbox"
+                    data-testid={ `checkbox-music-${trackId}` }
+                    id="check"
+                    onChange={ () => this.handleOnChange(
+                      track,
+                      isFavorite,
+                      islistingFavoritesSongs,
+                    ) }
+                    checked={ isChecked }
+                  />
+                  Favorita
+                </label>
+              </div>
+
+            )
           )
       )
     );
