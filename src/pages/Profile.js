@@ -16,8 +16,6 @@ class Profile extends React.Component {
   }
 
   userProfile = async () => {
-    this.setState({
-    });
     const user = await getUser();
     this.setState({
       name: user.name,
@@ -29,16 +27,20 @@ class Profile extends React.Component {
 
   render() {
     const { name, email, image, description } = this.state;
-    return ((
+    return (
       <div data-testid="page-profile">
         <Header />
-        <img src={ image } alt={ name } data-testid="profile-image" />
-        <p>{ name }</p>
-        <p>{ email }</p>
-        <p>{ description }</p>
-        <Link to="/profile/edit">Editar perfil</Link>
+        <div>
+          <img src={ image } alt="Imagem do usuário" data-testid="profile-image" />
+          <p>{ name }</p>
+          <p>{ email }</p>
+          <p>{ description }</p>
+        </div>
+        <button type="button">
+          <Link to="/profile/edit">Editar perfil</Link>
+        </button>
       </div>
-    ));
+    );
   }
 }
 
