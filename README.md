@@ -4,18 +4,15 @@ Projeto desenvolvido por mim durante o curso de Desenvolvimento Web na Trybe. Di
 <details>
 <summary><strong>Objetivos do projeto:</strong></summary>
 
-  * Desenvolver um jogo no estilo Super Trunfo! Uma pessoa usuária deverá ser capaz de:
-    * Criar um baralho com o tema livre.
-    * Adicionar e remover uma carta do baralho.
-    * Visualizar todas as cartas que foram adicionadas ao baralho.
-    * Jogar com o baralho criado.
-  * Verificar se eu era capaz de desenvolver usando:
-    * Ler o estado de um componente e usá-lo para alterar o que exibimos no browser.
-    * Inicializar um componente, dando a ele um estado pré-definido.
-    * Atualizar o estado de um componente.
-    * Capturar eventos utilizando a sintaxe do React.
-    * Criar formulários utilizando sintaxe JSX com as tags: `input`, `textarea`, `select`, `form`, `checkbox`.
-    * Transmitir informações de componentes filhos para componentes pais via callbacks.
+  * Desenvolver uma aplicação capaz de reproduzir músicas das mais variadas bandas e artistas, criar uma lista de músicas favoritas e editar o perfil da pessoa usuária logada.
+  * Verificar se eu era capaz de:
+    * Fazer requisições e consumir dados vindos de uma `API`.
+    * Utilizar os ciclos de vida de um componente React.
+    * Utilizar a função `setState` de forma a garantir que um determinado código só é executado após o estado ser atualizado.
+    * Utilizar o componente `BrowserRouter` corretamente.
+    * Criar rotas, mapeando o caminho da URL com o componente correspondente, via `Route`.
+    * Utilizar o `Switch` do `React Router`.
+    * Criar links de navegação na aplicação com o componente `Link`.
 </details>
 <details>
 <summary><strong> Requisitos do projeto:</strong></summary>
