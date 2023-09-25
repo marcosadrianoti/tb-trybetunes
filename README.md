@@ -17,19 +17,21 @@ Projeto desenvolvido por mim durante o curso de Desenvolvimento Web na Trybe. Di
 <details>
 <summary><strong> Requisitos do projeto:</strong></summary>
 
-  * Criar o formulário que será usado para adicionar cartas ao baralho.
-  * Adicionar as props necessárias ao componente de formulário.
-  * Criar e renderize o componente Card com as props necessárias.
-  * Criar o preview da carta que está sendo criada pelo formulário.
-  * Fazer a validação do botão de Salvar no formulário.
-  * Criar a função do botão salvar.
-  * Criar a validação do Super Trunfo.
-  * Exibir a lista de cartas que estão salvas no estado.
-  * Criar um botão para remover uma carta do baralho.
+  * Criar as rotas necessárias para a aplicação.
+  * Criar um formulário para identificação.
+  * Criar um componente de cabeçalho.
+  * Criar os links de navegação no cabeçalho.
+  * Criar o formulário para pesquisar artistas.
+  * Fazer a requisição para pesquisar artistas.
+  * Criar a lista de músicas do álbum selecionado.
+  * Criar o mecanismo para adicionar músicas na lista de músicas favoritas.
+  * Fazer a requisição para recuperar as músicas favoritas ao entrar na página do Álbum.
+  * Fazer a requisição para recuperar as músicas favoritas e atualizar a lista após favoritar uma música.
+  * Criar o mecanismo para remover músicas na lista de músicas favoritas.
   * Requisitos bônus:
-    * Criar o filtro pelo nome da carta.
-    * Criar o filtro por raridade da carta.
-    * Criar o filtro de Super Trunfo.
+    * Criar a lista de músicas favoritas.
+    * Criar a exibição de perfil.
+    * Criar o formulário de edição de perfil.
 </details>
   
 ## Rodando o projeto localmente
